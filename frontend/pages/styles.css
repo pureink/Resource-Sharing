@@ -1,15 +1,18 @@
+html{
+width: 100%;
+}
 body {
   font-family: -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-  padding: 0 1rem 1rem 1rem;
-  max-width: 680px;
-  margin: 0 auto;
-  background: #fff;
-  color: #333;
 }
-
+h2{
+  margin: 0;
+  padding: 0;
+}
 li,
 p {
   line-height: 1.5rem;
+  margin: 0;
+  padding: 0;
 }
 
 a {
@@ -30,12 +33,26 @@ iframe {
 }
 .products{
   display: flex;
+  flex-wrap: wrap;
+  white-space: nowrap;
 }
 .product{
   width: 350px;
-  height: 200px;
+  height: 350px;
+  text-align: center;
 }
 .productimg{
-  width: 100%;
-  height: 80%;
+  width: 50%;
+  height: 60%;
+}
+.label{
+  display:block;
+}
+.smbtn{
+  margin-top:20px;
+    background: none;
+    font-size: 17px;
+    border-radius: 7px;
+    padding: 2px 16px 2px 16px;
+    border: 2px solid #000;
 }

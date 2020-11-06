@@ -48,7 +48,8 @@ export default function Header () {
       </div>
       <nav>
         <ul className={styles.navItems}>
-          <li className={styles.navItem}><Link href="/"><a>Home</a></Link></li>
+          <li className={styles.navItem}><Link href="/"><a>所有商品</a></Link></li>
+          <li className={styles.navItem}><Link href="/me"><a>我的商品</a></Link></li>
           <li className={styles.navItem}><Link href="/form"><a>创建商品</a></Link></li>
         </ul>
       </nav>

@@ -1,5 +1,6 @@
 import Layout from '../components/layout'
 import * as moment from 'moment';
+import { getSession } from 'next-auth/client'
 function formatDate(momentDate) {        
   return moment(momentDate).format("MM/DD/YYYY hh:mm:ss");
 }
@@ -23,10 +24,11 @@ export default function Page ({products}) {
     </Layout>
   )
 }
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
-  const res = await fetch('https://api.hezh.fail/api/product')
+  const session = await getSession(context)
+  const res = await fetch('https://api.hezh.fail/api/user/'+session.user.name)
   const json = await res.json()
   const products=json.response
   // By returning { props: posts }, the Blog component

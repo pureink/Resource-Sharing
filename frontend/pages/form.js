@@ -1,4 +1,5 @@
 import React from 'react';
+import Layout from '../components/layout'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import * as moment from 'moment';
@@ -8,8 +9,10 @@ import Datetime from 'react-datetime'
 function formatDate(momentDate) {        
   return moment(momentDate).format("YYYY-MM-DD hh:mm:ss");
 }
+//此界面用于创建新的商品
  export default function FormPage({session}){
      return (
+       <Layout>
     <Formik
     initialValues={{
         name: session.user.name,
@@ -21,8 +24,9 @@ function formatDate(momentDate) {
         dateTo:""
       }}
     validationSchema={Yup.object().shape({
-      price: Yup.number().moreThan(0, "Age must be greater than 0"),
-      productname: Yup.string().trim().required("Name can not be empty")
+      price: Yup.number().moreThan(0, "价格不能为负数哦!"),
+      productname: Yup.string().trim().required("产品名称不可以留空哦"),
+      per:Yup.string().trim().required("产品单位不可以留空哦")
     })}
     onSubmit={(values) => {
         console.log(values)
@@ -45,25 +49,25 @@ function formatDate(momentDate) {
       }}
     render={props =>
         <form onSubmit={props.handleSubmit}>
-            <h1>成功创建商品</h1>
+            <h1>商品创建界面</h1>
           <div className="content">
           <div>
-              <label>productname： </label><input type="text" id="productname" name="productname" value={props.values.productname}
+              <label className="label">请输入您产品的名称: </label><input type="text" id="productname" name="productname" value={props.values.productname}
                                         onChange={props.handleChange} onBlur={props.handleBlur}/>
 {props.touched.productname && props.errors.productname && <div>{props.errors.productname}</div>}
             </div>
             <div>
-              <label>price： </label><input type="text" id="price" name="price" value={props.values.price}
+              <label className="label">单价</label><input type="text" id="price" name="price" value={props.values.price}
                                         onChange={props.handleChange} onBlur={props.handleBlur}/>
 {props.touched.price && props.errors.price && <div>{props.errors.price}</div>}
             </div>
             <div>
-              <label>单位： </label><input type="text" id="per" name="per" value={props.values.per}
+              <label className="label">单位：</label><input type="text" id="per" name="per" value={props.values.per}
                                         onChange={props.handleChange} onBlur={props.handleBlur}/>
 {props.touched.per && props.errors.per && <div>{props.errors.per}</div>}
             </div>
             <div>
-              <label>imageurl： </label><input type="text" id="image" name="image" value={props.values.image}
+              <label className="label">展示图片地址</label><input type="text" id="image" name="image" value={props.values.image}
                                         onChange={props.handleChange} onBlur={props.handleBlur}/>
 {props.touched.image && props.errors.image && <div>{props.errors.image}</div>}
             <img src={props.values.image}></img>
@@ -89,14 +93,14 @@ function formatDate(momentDate) {
     isInvalid={!!props.errors.dateTo}
 />
             <div className="submit-area">
-              <button type="submit">提交</button>
+              <button className="smbtn" type="submit">submit!</button>
             </div>
           </div>
         </form>
       }
-
 //......
  />
+ </Layout>
      )
  }
 

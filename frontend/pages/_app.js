@@ -1,5 +1,6 @@
 import { Provider } from 'next-auth/client'
 import './styles.css'
+import Head from 'next/head'
 import "react-datetime/css/react-datetime.css";
 // Use the <Provider> to improve performance and allow components that call
 // `useSession()` anywhere in your application to access the `session` object.
@@ -24,6 +25,10 @@ export default function App ({ Component, pageProps }) {
         keepAlive: 0
       }}
       session={pageProps.session} >
+        <Head><meta name="viewport" content="width=device-width, 
+        initial-scale=1.0,
+        maximum-scale=1.0,
+        user-scalable=0"></meta></Head>
       <Component {...pageProps} />
     </Provider>
   )
