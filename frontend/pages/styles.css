@@ -3,6 +3,13 @@ width: 100%;
 }
 body {
   font-family: -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  text-align: center;
+}
+label{
+  text-align: left;
+  font-size:16px;
+  line-height: 24px;
+  color: rgb(38, 38, 39);
 }
 h2{
   margin: 0;
@@ -31,19 +38,37 @@ iframe {
   border-radius: .5rem;
   filter: invert(1);
 }
+.time{
+  font-size:12px;
+  line-height:1;
+}
+.inputbox{
+  display: block;
+    font-size: 16px;
+    height: 40px;
+    margin: 3px 0px;
+    border-radius: 3px;
+    padding: 0px 14px;
+    color: rgb(76, 76, 76);
+    border: 1px solid rgb(204, 204, 204);
+    font-family: inherit;
+    transition: border-color 0.2s ease 0s;
+    width: 384px;
+}
 .products{
   display: flex;
   flex-wrap: wrap;
   white-space: nowrap;
+  justify-content: center;
 }
 .product{
-  width: 350px;
-  height: 350px;
+  width: 200px;
+  height: 300px;
   text-align: center;
 }
 .productimg{
-  width: 50%;
-  height: 60%;
+  width: 80%;
+  height: 40%;
 }
 .label{
   display:block;
@@ -55,4 +80,15 @@ iframe {
     border-radius: 7px;
     padding: 2px 16px 2px 16px;
     border: 2px solid #000;
+}
+.lb{
+  margin-top:15px;
+  display: inline-block;
+}
+.content{
+  justify-content: center;
+}
+.displayimg{
+  display: block;
+  margin: auto;
 }

@@ -64,31 +64,32 @@ export default function Product (props) {
           dateTo:values.dateTo
         })
       })
+      alert("修改成功")
       }}
     render={props =>
         <form onSubmit={props.handleSubmit}>
             <h1>修改商品信息</h1>
           <div className="content">
           <div>
-              <label className="label">productname： </label><input type="text" id="productname" name="productname" value={props.values.productname}
+              <label className="label">productname： </label><input className="inputbox" type="text" id="productname" name="productname" value={props.values.productname}
                                         onChange={props.handleChange} onBlur={props.handleBlur}/>
 {props.touched.productname && props.errors.productname && <div>{props.errors.productname}</div>}
             </div>
             <div>
-              <label className="label">price： </label><input type="text" id="price" name="price" value={props.values.price}
+              <label className="label">price： </label><input className="inputbox" type="text" id="price" name="price" value={props.values.price}
                                         onChange={props.handleChange} onBlur={props.handleBlur}/>
 {props.touched.price && props.errors.price && <div>{props.errors.price}</div>}
             </div>
             <div>
-              <label className="label">单位： </label><input type="text" id="per" name="per" value={props.values.per}
+              <label className="label">单位： </label><input className="inputbox" type="text" id="per" name="per" value={props.values.per}
                                         onChange={props.handleChange} onBlur={props.handleBlur}/>
 {props.touched.per && props.errors.per && <div>{props.errors.per}</div>}
             </div>
             <div>
-              <label className="label">imageurl： </label><input type="text" id="image" name="image" value={props.values.image}
+              <label className="label">imageurl： </label><input className="inputbox" type="text" id="image" name="image" value={props.values.image}
                                         onChange={props.handleChange} onBlur={props.handleBlur}/>
 {props.touched.image && props.errors.image && <div>{props.errors.image}</div>}
-            <img src={props.values.image}></img>
+            <img className="displayimg"src={props.values.image}></img>
             </div>
             <p>商品起始时间</p>
             <Datetime

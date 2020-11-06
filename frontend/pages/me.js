@@ -12,9 +12,9 @@ export default function Page ({products}) {
         <img className="productimg" src={products[i].productimg}></img>
         <a href={"/product/"+products[i].id}><h2>{products[i].productname}</h2></a>
     <p>{products[i].price}{products[i].per}</p>
-    <p>{formatDate(products[i].starttime)}</p>
-    <p>{formatDate(products[i].endtime)}</p>
     <p>发布者:{products[i].name}</p>
+    <p className="time">{formatDate(products[i].starttime)}</p>
+    <p className="time">{formatDate(products[i].endtime)}</p>
       </div>
     )
   }

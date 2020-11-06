@@ -46,32 +46,33 @@ function formatDate(momentDate) {
           dateTo:values.dateTo
         })
       })
+      alert("创建成功")
       }}
     render={props =>
         <form onSubmit={props.handleSubmit}>
             <h1>商品创建界面</h1>
           <div className="content">
-          <div>
-              <label className="label">请输入您产品的名称: </label><input type="text" id="productname" name="productname" value={props.values.productname}
+          <div className="lb">
+              <label className="label">请输入您产品的名称: </label><input className="inputbox" type="text" id="productname" name="productname" value={props.values.productname}
                                         onChange={props.handleChange} onBlur={props.handleBlur}/>
 {props.touched.productname && props.errors.productname && <div>{props.errors.productname}</div>}
             </div>
-            <div>
-              <label className="label">单价</label><input type="text" id="price" name="price" value={props.values.price}
+            <div className="lb">
+              <label className="label">单价</label><input className="inputbox" type="text" id="price" name="price" value={props.values.price}
                                         onChange={props.handleChange} onBlur={props.handleBlur}/>
 {props.touched.price && props.errors.price && <div>{props.errors.price}</div>}
             </div>
-            <div>
-              <label className="label">单位：</label><input type="text" id="per" name="per" value={props.values.per}
+            <div className="lb">
+              <label className="label">单位：</label><input className="inputbox" type="text" id="per" name="per" value={props.values.per}
                                         onChange={props.handleChange} onBlur={props.handleBlur}/>
 {props.touched.per && props.errors.per && <div>{props.errors.per}</div>}
             </div>
-            <div>
-              <label className="label">展示图片地址</label><input type="text" id="image" name="image" value={props.values.image}
+            <div className="lb">
+              <label className="label">展示图片地址</label><input className="inputbox" type="text" id="image" name="image" value={props.values.image}
                                         onChange={props.handleChange} onBlur={props.handleBlur}/>
 {props.touched.image && props.errors.image && <div>{props.errors.image}</div>}
-            <img src={props.values.image}></img>
             </div>
+            <img className="displayimg"src={props.values.image}></img>
             <p>商品起始时间</p>
             <Datetime
     id="dateFrom"
