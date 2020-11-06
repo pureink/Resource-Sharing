@@ -48,7 +48,7 @@ export default function Product (props) {
     })}
     onSubmit={(values) => {
         console.log(values)
-        const res =fetch('http://localhost:3001/change', {
+        const res =fetch('http://47.94.194.104:3001/change', {
         method: 'put',
         headers: {
           'Content-Type': 'application/json'
@@ -126,7 +126,7 @@ export async function getServerSideProps(context) {
   const session = await getSession(context)
   const path = context.params.pid
   console.log(path)
-  const data = await fetcher("http://localhost:3001/api/product/"+path)
+  const data = await fetcher("http://47.94.194.104:3001/api/product/"+path)
   return {
     props: {
       session,
