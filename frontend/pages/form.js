@@ -1,8 +1,13 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import * as moment from 'moment';
 import {genid} from '../utils/genid';
 import { getSession } from 'next-auth/client'
+import Datetime from 'react-datetime'
+function formatDate(momentDate) {        
+  return moment(momentDate).format("YYYY-MM-DD hh:mm:ss");
+}
  export default function FormPage({session}){
      return (
     <Formik
@@ -11,7 +16,9 @@ import { getSession } from 'next-auth/client'
         image:"",
         productname: "",
         price:"",
-        per:""
+        per:"",
+        dateFrom:"",
+        dateTo:""
       }}
     validationSchema={Yup.object().shape({
       price: Yup.number().moreThan(0, "Age must be greater than 0"),
@@ -30,7 +37,9 @@ import { getSession } from 'next-auth/client'
           price: values.price,
           per:values.per,
           name: values.name,
-          image:values.image
+          image:values.image,
+          dateFrom:values.dateFrom,
+          dateTo:values.dateTo
         })
       })
       }}
@@ -59,6 +68,26 @@ import { getSession } from 'next-auth/client'
 {props.touched.image && props.errors.image && <div>{props.errors.image}</div>}
             <img src={props.values.image}></img>
             </div>
+            <p>商品起始时间</p>
+            <Datetime
+    id="dateFrom"
+    name="dateFrom"
+    placeholder="Enter date"
+    value={props.dateFrom}
+    onChange={(dateFromValue) => {props.setFieldValue('dateFrom', formatDate(dateFromValue))}}
+    onBlur={props.onBlur}
+    isInvalid={!!props.errors.dateFrom}
+/>
+<p>商品结束时间</p>
+            <Datetime
+    id="dateTo"
+    name="dateTo"
+    placeholder="Enter date"
+    value={props.dateFrom}
+    onChange={(dateToValue) => {props.setFieldValue('dateTo', formatDate(dateToValue))}}
+    onBlur={props.onBlur}
+    isInvalid={!!props.errors.dateTo}
+/>
             <div className="submit-area">
               <button type="submit">提交</button>
             </div>
