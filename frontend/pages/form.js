@@ -26,7 +26,7 @@ function formatDate(momentDate) {
     })}
     onSubmit={(values) => {
         console.log(values)
-        const res =fetch('http://47.94.194.104:3001/add', {
+        const res =fetch('https://api.hezh.fail/add', {
         method: 'post',
         headers: {
           'Content-Type': 'application/json'

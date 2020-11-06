@@ -6,7 +6,7 @@ const Home = () => {
   const subscribe = async (e) => {
     e.preventDefault()
     try {
-      const res = await fetch('http://localhost:3001/add', {
+      const res = await fetch('https://api.hezh.fail/add', {
         method: 'post',
         headers: {
           'Content-Type': 'application/json'
