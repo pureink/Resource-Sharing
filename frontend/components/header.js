@@ -8,7 +8,7 @@ import styles from './header.module.css'
 export default function Header () {
   const [ session, loading ] = useSession()
   //存在用户时才显示个人界面的nav
-  const mepage = null;
+  let mepage = null;
   if(session) mepage=<li className={styles.navItem}><Link href="/me"><a>我的商品</a></Link></li>
   return (
     <header>
