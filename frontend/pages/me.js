@@ -1,10 +1,12 @@
 import Layout from '../components/layout'
 import * as moment from 'moment';
 import { getSession } from 'next-auth/client'
+import Datetime from 'react-datetime'
+import AccessDenied from '../components/access-denied'
 function formatDate(momentDate) {        
   return moment(momentDate).format("MM/DD/YYYY hh:mm:ss");
 }
-export default function Page ({products}) {
+export default function Page ({products,session}) {
   const items=[]
   for (var i=0;i<products.length;i++){
     items.push(
@@ -35,7 +37,8 @@ export async function getServerSideProps(context) {
   // will receive `posts` as a prop at build time
   return {
     props: {
-      products,
+      session,
+      products
     },
   }
 }

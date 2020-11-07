@@ -25,6 +25,15 @@ export default function Product (props) {
     return (
       <div>
         <p>欢迎订购</p>
+        <div className="product">
+        <img className="productimg" src={products.productimg}></img>
+        <a href={"/product/"+products.id}><h2>{products.productname}</h2></a>
+    <p>{products.price}{products.per}</p>
+    <p>发布者:{products.name}</p>
+    <p className="time">{formatDate(products.starttime)}</p>
+    <p className="time">{formatDate(products.endtime)}</p>
+
+      </div>
       </div>
     )
   }

@@ -6,11 +6,13 @@ import * as moment from 'moment';
 import {genid} from '../utils/genid';
 import { getSession } from 'next-auth/client'
 import Datetime from 'react-datetime'
+import AccessDenied from '../components/access-denied'
 function formatDate(momentDate) {        
   return moment(momentDate).format("YYYY-MM-DD hh:mm:ss");
 }
 //此界面用于创建新的商品
  export default function FormPage({session}){
+  if (!session) { return  <Layout><AccessDenied/></Layout> }
      return (
        <Layout>
     <Formik
