@@ -6,7 +6,7 @@
 - 使用next-auth库以及auth0提供注册登录
 - 部署在vercel
 
-##本地开发
+### 本地开发
 克隆本仓库,进入frontend文件夹,安装相关依赖
 ```sh
 cd frontend
@@ -18,7 +18,7 @@ npm run dev
 - restful接口
 - 部署在heroku(https)
 
-## 本地开发
+### 本地开发
 克隆本仓库进入backend文件夹,安装相关依赖
 ```sh
 cd backend
