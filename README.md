@@ -17,6 +17,7 @@ npm run dev
 - 基于node.js开发使用express.js框架
 - restful接口
 - 部署在heroku(https)
+- https://api.hezh.fail
 
 ### 本地开发
 克隆本仓库进入backend文件夹,安装相关依赖
