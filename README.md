@@ -26,5 +26,5 @@ cd backend
 npm i
 npm start
 ```
-##数据库
+## 数据库
 使用mysql(MariaDB in CentOS7)
