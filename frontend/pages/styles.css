@@ -96,7 +96,7 @@ iframe {
 }
 .lb{
   margin-top:15px;
-  display: inline-block;
+  display: block;
 }
 .content{
   justify-content: center;
