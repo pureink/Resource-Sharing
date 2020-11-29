@@ -43,17 +43,25 @@ iframe {
   line-height:1;
 }
 .inputbox{
-  display: block;
-    font-size: 16px;
-    height: 40px;
-    margin: 3px 0px;
-    border-radius: 3px;
-    padding: 0px 14px;
-    color: rgb(76, 76, 76);
-    border: 1px solid rgb(204, 204, 204);
-    font-family: inherit;
-    transition: border-color 0.2s ease 0s;
-    width: 384px;
+  font-size: 16px;
+  height: 40px;
+  margin: 3px 0px;
+  border-radius: 3px;
+  padding: 0px 14px;
+  color: rgb(76, 76, 76);
+  border: 1px solid rgb(204, 204, 204);
+  font-family: inherit;
+  transition: border-color 0.2s ease 0s;
+  width: 384px;
+  max-width: 93%;
+}
+.form-control{
+  height: 40px;
+  margin: 3px 0px;
+  width: 384px;
+  max-width: 93%;
+  border-radius: 3px;
+  padding: 0px 14px;
 }
 .products{
   display: flex;
@@ -76,6 +84,7 @@ iframe {
 }
 .label{
   display:block;
+  text-align: center;
 }
 .smbtn{
   margin-top:20px;
@@ -95,4 +104,26 @@ iframe {
 .displayimg{
   display: block;
   margin: auto;
+}
+.deletebtn{
+  overflow:hidden;
+    width: 100px;
+    position: relative;
+    background: #FFF;
+    border: 2px solid #e50914;
+    border-radius: 4px;
+    padding: 8px 12px;
+    color: #e50914;
+    margin-top: 10px;
+}
+.postbtn{
+  overflow:hidden;
+    width: 100px;
+    position: relative;
+    background: #FFF;
+    border: 2px solid #000;
+    border-radius: 4px;
+    padding: 8px 12px;
+    color: #000;
+    margin: 10px;
 }

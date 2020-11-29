@@ -13,8 +13,26 @@ function formatDate(momentDate) {
 }
 //如果是个人的产品显示修改界面,否则显示订购界面
 const fetcher = url => fetch(url).then(res => res.json());
+
 export default function Product (props) {
-  const session=props.session
+  //change back please
+  const del=async(e)=>{
+    e.preventDefault();
+    if(typeof window !== "undefined"){
+      if(window.confirm('真的要删除么？')){
+        fetch('https://api.hezh.fail/deletep/' + product.id, {
+          method: 'DELETE',
+        })
+        .then(res => res.text()) // or res.json()
+        .then(res => console.log(res))
+        window.location.href ='/'
+      }
+    else{
+      alert("那没事了")
+    }
+    }
+  
+  }
   const data=props.data
   const product = data.response[0]
   const username = product.name
@@ -121,7 +139,7 @@ export default function Product (props) {
     isInvalid={!!props.errors.dateTo}
 />
             <div className="submit-area">
-              <button type="submit">提交</button>
+              <button className="postbtn"type="submit">提交</button>
             </div>
           </div>
         </form>
@@ -129,6 +147,8 @@ export default function Product (props) {
 
 //......
  />
+<button className="deletebtn" onClick={del}>删除商品
+</button>
     </Layout>
   )
 }

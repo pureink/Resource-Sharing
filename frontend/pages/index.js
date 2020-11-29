@@ -7,7 +7,7 @@ export default function Page ({products}) {
   const items=[]
   for (var i=0;i<products.length;i++){
     items.push(
-      <div className="product">
+      <div key ={i} className="product">
         <img className="productimg" src={products[i].productimg}></img>
         <a href={"/product/"+products[i].id}><h2>{products[i].productname}</h2></a>
     <p>{products[i].price}{products[i].per}</p>
