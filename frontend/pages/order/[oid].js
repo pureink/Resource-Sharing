@@ -98,12 +98,17 @@ const send=async(e)=>{
   }
 }
 }
-  const session=props.session
+  const session={
+    user:{
+      name:"a73841959"
+    }
+  }
   const data=props.data
   const order = data.response[0]
   const info = props.info
   const product = info.response[0]
   const status = order.status
+  console.log("status = "+status)
   console.log(info)
   console.log(order)
   // If no session exists, display access denied message
@@ -134,9 +139,12 @@ const send=async(e)=>{
   else if(session.user.name==order.fromuser)
   {
     let btns
-    if(status===0)btns=<button onClick={conf1}>确认订单</button>
-    if(status===1)btns=<button onClick={send}>确认发货</button>
-    else btns=<p>暂无可用的操作</p>
+    if(status===0)
+    btns=<button onClick={conf1}>确认订单</button>
+    else if(status===1)
+    btns=<button onClick={send}>确认发货</button>
+    else 
+    btns = <p>暂无可用的操作</p>
     return(
       <div>
 你是发布者
