@@ -98,11 +98,7 @@ const send=async(e)=>{
   }
 }
 }
-  const session={
-    user:{
-      name:"a73841959"
-    }
-  }
+  const session=props.session
   const data=props.data
   const order = data.response[0]
   const info = props.info
