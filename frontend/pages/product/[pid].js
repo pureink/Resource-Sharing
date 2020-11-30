@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router'
 import { getSession } from 'next-auth/client'
-import useSWR from "swr";
 import Layout from '../../components/layout'
 import AccessDenied from '../../components/access-denied'
 import React from 'react';
@@ -8,14 +7,43 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import * as moment from 'moment';
 import Datetime from 'react-datetime'
+import {genid} from '../../utils/genid'
 function formatDate(momentDate) {        
   return moment(momentDate).format("YYYY-MM-DD hh:mm:ss");
 }
 //如果是个人的产品显示修改界面,否则显示订购界面
 const fetcher = url => fetch(url).then(res => res.json());
-
+function ttime (){
+  return new Date()
+}
 export default function Product (props) {
   //change back please
+  const buy=async(e)=>{
+    e.preventDefault();
+    if(typeof window !== "undefined"){
+      if(window.confirm('真的要订购么？')){
+        fetch('https://api.hezh.fail/neworder/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            fromuser:session.user.name,
+            productid:product.id,
+            productname:product.name,
+            touser: product.name,
+            time:ttime()
+          })
+        })
+        .then(res => res.text()) // or res.json()
+        .then(res => console.log(res))
+        window.location.href ='/myorder'
+      }
+    else{
+      alert("那没事了")
+    }
+  }
+  }
   const del=async(e)=>{
     e.preventDefault();
     if(typeof window !== "undefined"){
@@ -44,15 +72,13 @@ export default function Product (props) {
     return (
       <div>
         <p>欢迎订购</p>
-        <div className="product">
         <img className="productimg" src={product.productimg}></img>
         <a href={"/product/"+product.id}><h2>{product.productname}</h2></a>
     <p>{product.price}{product.per}</p>
     <p>发布者:{product.name}</p>
     <p className="time">{formatDate(product.starttime)}</p>
     <p className="time">{formatDate(product.endtime)}</p>
-
-      </div>
+    <button className="postbtn" onClick={buy}>订购 </button>
       </div>
     )
   }

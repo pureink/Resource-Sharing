@@ -7,9 +7,14 @@ import styles from './header.module.css'
 // rendering, and avoids any flash incorrect content on initial page load.
 export default function Header () {
   const [ session, loading ] = useSession()
+
   //存在用户时才显示个人界面的nav
   let mepage = null;
-  if(session) mepage=<li className={styles.navItem}><Link href="/me"><a>我的商品</a></Link></li>
+  if(session) mepage=<>
+  <li className={styles.navItem}><Link href="/me"><a>我的商品</a></Link></li>
+  <li className={styles.navItem}><Link href="/myorder"><a>我的购买</a></Link></li>
+  <li className={styles.navItem}><Link href="/mysell"><a>我的出售</a></Link></li>
+  </>
   return (
     <header>
       <noscript>
