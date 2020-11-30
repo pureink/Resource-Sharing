@@ -28,10 +28,10 @@ export default function Product (props) {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            fromuser:session.user.name,
+            touser:session.user.name,
             productid:product.id,
             productname:product.name,
-            touser: product.name,
+            fromuser: product.name,
             time:ttime()
           })
         })
