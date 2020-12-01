@@ -17,6 +17,7 @@ export default function Page ({products,session}) {
     <p>发布者:{products[i].name}</p>
     <p className="time">{formatDate(products[i].starttime)}</p>
     <p className="time">{formatDate(products[i].endtime)}</p>
+    <p>{products[i].status? "已被购买":"正在出售"}</p>
       </div>
     )
   }

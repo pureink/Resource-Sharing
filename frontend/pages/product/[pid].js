@@ -30,13 +30,21 @@ export default function Product (props) {
           body: JSON.stringify({
             touser:session.user.name,
             productid:product.id,
-            productname:product.name,
+            productname:product.productname,
             fromuser: product.name,
             time:ttime()
           })
         })
-        .then(res => res.text()) // or res.json()
-        .then(res => console.log(res))
+        fetch('https://api.hezh.fail/productstatus',{
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            id:product.id,
+            status:1
+          })
+        })
         window.location.href ='/myorder'
       }
     else{
@@ -94,7 +102,8 @@ export default function Product (props) {
         price:product.price,
         per:product.per,
         dateFrom:formatDate(product.starttime),
-        dateTo:formatDate(product.endtime)
+        dateTo:formatDate(product.endtime),
+        detail:Product.detail
       }}
     validationSchema={Yup.object().shape({
       price: Yup.number().moreThan(0, "price must be greater than 0"),
@@ -115,7 +124,8 @@ export default function Product (props) {
           name: values.name,
           image:values.image,
           dateFrom:values.dateFrom,
-          dateTo:values.dateTo
+          dateTo:values.dateTo,
+          detail:values.detail
         })
       })
       alert("修改成功")
@@ -128,6 +138,11 @@ export default function Product (props) {
               <label className="label">productname： </label><input className="inputbox" type="text" id="productname" name="productname" value={props.values.productname}
                                         onChange={props.handleChange} onBlur={props.handleBlur}/>
 {props.touched.productname && props.errors.productname && <div>{props.errors.productname}</div>}
+            </div>
+            <div>
+              <label className="label">detail: </label><input className="inputbox" type="text" id="detail" name="detail" value={props.values.detail}
+                                        onChange={props.handleChange} onBlur={props.handleBlur}/>
+{props.touched.detail && props.errors.detail && <div>{props.errors.detail}</div>}
             </div>
             <div>
               <label className="label">price： </label><input className="inputbox" type="text" id="price" name="price" value={props.values.price}

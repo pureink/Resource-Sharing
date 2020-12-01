@@ -12,7 +12,7 @@ export default function Page ({orders}) {
     <tbody key ={i} className="orders"> 
     <tr>
     <td><a href={`/order/${orders[i].id}`}>{orders[i].id}</a></td>
-    <td><a href={"/product/"+orders[i].productid}>{orders.productname}</a></td>
+    <td><a href={"/product/"+orders[i].productid}>{orders[i].productname}</a></td>
     <td>{formatDate(orders[i].time)}</td>
     <td>从{orders[i].fromuser}手中购买</td>
     <td>{orderInfo(orders[i].status)}</td>

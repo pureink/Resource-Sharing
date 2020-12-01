@@ -23,7 +23,8 @@ function formatDate(momentDate) {
         price:"",
         per:"",
         dateFrom:"",
-        dateTo:""
+        dateTo:"",
+        detail:''
       }}
     validationSchema={Yup.object().shape({
       price: Yup.number().moreThan(0, "价格不能为负数哦!"),
@@ -45,7 +46,8 @@ function formatDate(momentDate) {
           name: values.name,
           image:values.image,
           dateFrom:values.dateFrom,
-          dateTo:values.dateTo
+          dateTo:values.dateTo,
+          detail:values.detail
         })
       })
       alert("创建成功")
@@ -58,6 +60,11 @@ function formatDate(momentDate) {
               <label className="label">请输入您产品的名称: </label><input className="inputbox" type="text" id="productname" name="productname" value={props.values.productname}
                                         onChange={props.handleChange} onBlur={props.handleBlur}/>
 {props.touched.productname && props.errors.productname && <div>{props.errors.productname}</div>}
+            </div>
+            <div className="lb">
+              <label className="label">请输入您产品的描述: </label><input className="inputbox" type="text" id="detail" name="detail" value={props.values.detail}
+                                        onChange={props.handleChange} onBlur={props.handleBlur}/>
+{props.touched.detail && props.errors.detail && <div>{props.errors.detail}</div>}
             </div>
             <div className="lb">
               <label className="label">单价</label><input className="inputbox" type="text" id="price" name="price" value={props.values.price}
