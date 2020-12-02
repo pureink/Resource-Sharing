@@ -22,7 +22,7 @@ export default function Product (props) {
     e.preventDefault();
     if(typeof window !== "undefined"){
       if(window.confirm('真的要订购么？')){
-        fetch('https://api.hezh.fail/neworder/', {
+        await fetch('https://api.hezh.fail/neworder/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -35,7 +35,7 @@ export default function Product (props) {
             time:ttime()
           })
         })
-        fetch('https://api.hezh.fail/productstatus',{
+        await fetch('https://api.hezh.fail/productstatus',{
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json'
@@ -56,7 +56,7 @@ export default function Product (props) {
     e.preventDefault();
     if(typeof window !== "undefined"){
       if(window.confirm('真的要删除么？')){
-        fetch('https://api.hezh.fail/deletep/' + product.id, {
+        await fetch('https://api.hezh.fail/deletep/' + product.id, {
           method: 'DELETE',
         })
         .then(res => res.text()) // or res.json()
@@ -75,13 +75,14 @@ export default function Product (props) {
   const username = product.name
   console.log(product)
   // If no session exists, display access denied message
-  if (!session) { return  <Layout><AccessDenied/></Layout> }
+  //if (!session) { return  <Layout><AccessDenied/></Layout> }
   if(session.user.name!=username){
     return (
+      <Layout>
       <div>
-        <p>欢迎订购</p>
+        <h2 style={{color:'rgb(52, 109, 241)'}}>欢迎订购</h2>
         <div className="buyproduct">
-        <img className="productimg" src={product.productimg}></img>
+        <img src={product.productimg}></img>
         <a href={"/product/"+product.id}><h2>{product.productname}</h2></a>
         <p>{product.detail}</p>
     <p>{product.price}{product.per}</p>
@@ -91,6 +92,7 @@ export default function Product (props) {
     <button className="postbtn" onClick={buy}>订购 </button>
       </div>
       </div>
+      </Layout>
     )
   }
   // 这个商品属于你,进行修改操作

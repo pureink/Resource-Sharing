@@ -86,8 +86,10 @@ iframe {
   padding-top: 10px;
 }
 .buyproduct{
+  max-width: 100%;
   width: 600px;
   height: 800px;
+  margin: auto;
 }
 .productimg{
   width: 80%;
