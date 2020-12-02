@@ -20,10 +20,11 @@ export default function Header () {
       <noscript>
         <style>{`.nojs-show { opacity: 1; top: 0; }`}</style>
       </noscript>
+      <h1>Resoure - Sharing</h1>
       <div className={styles.signedInStatus}>
         <p className={`nojs-show ${(!session && loading) ? styles.loading : styles.loaded}`}>
           {!session && <>
-            <span className={styles.notSignedInText}>You are not signed in</span>
+            <span className={styles.notSignedInText}>请先完成登录</span>
             <a
                 href={`/api/auth/signin`}
                 className={styles.buttonPrimary}
@@ -32,7 +33,7 @@ export default function Header () {
                   signIn()
                 }}
               >
-                Sign in
+                登录
               </a>
           </>}
           {session && <>
@@ -49,7 +50,7 @@ export default function Header () {
                   signOut()
                 }}
               >
-                Sign out
+                登出
               </a>
           </>}
         </p>
@@ -59,6 +60,7 @@ export default function Header () {
           <li className={styles.navItem}><Link href="/"><a>所有商品</a></Link></li>
           {mepage}
           <li className={styles.navItem}><Link href="/form"><a>创建商品</a></Link></li>
+          <li className={styles.navItem}><Link href="/about"><a>关于</a></Link></li>
         </ul>
       </nav>
     </header>
