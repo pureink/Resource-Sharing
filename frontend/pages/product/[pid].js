@@ -80,13 +80,16 @@ export default function Product (props) {
     return (
       <div>
         <p>欢迎订购</p>
+        <div className="buyproduct">
         <img className="productimg" src={product.productimg}></img>
         <a href={"/product/"+product.id}><h2>{product.productname}</h2></a>
+        <p>{product.detail}</p>
     <p>{product.price}{product.per}</p>
     <p>发布者:{product.name}</p>
     <p className="time">{formatDate(product.starttime)}</p>
     <p className="time">{formatDate(product.endtime)}</p>
     <button className="postbtn" onClick={buy}>订购 </button>
+      </div>
       </div>
     )
   }

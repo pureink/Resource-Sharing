@@ -1,8 +1,13 @@
+@font-face {
+  font-family: PTMono;
+  font-weight: 400;
+  src: url(../public/PTMono.woff2) format("woff2");
+}
 html{
 width: 100%;
 }
 body {
-  font-family: -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-family: "PTMono",-apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   text-align: center;
 }
 label{
@@ -24,7 +29,9 @@ p {
 
 a {
   font-weight: 500;
+  color:rgb(52, 109, 241);
 }
+
 
 hr {
   border: 1px solid #ddd;
@@ -77,6 +84,10 @@ iframe {
   border-radius:5px;
   margin: 5px 10px;
   padding-top: 10px;
+}
+.buyproduct{
+  width: 600px;
+  height: 800px;
 }
 .productimg{
   width: 80%;
