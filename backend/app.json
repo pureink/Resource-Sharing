@@ -1,0 +1,6 @@
+{
+    "name": "backend for resource-sharing",
+    "description": "a restful api for resource-sharing",
+    "repository": "https://github.com/badink/Resource-Sharing",
+    "keywords": ["node"]
+}

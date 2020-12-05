@@ -22,7 +22,9 @@ export default function Page ({orders}) {
   }
   return (
     <Layout>
-        <h2>以下是您订购的商品</h2>
+        <h2 style="
+    margin-bottom: 20px;
+">以下是您订购的商品</h2>
 <table>
     <thead>
         <tr>

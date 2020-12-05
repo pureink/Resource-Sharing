@@ -11,9 +11,9 @@ app.use(express.static('public'));
 //create database connection
 const conn = mysql.createConnection({
   host: '47.94.194.104',
-  user: 'csgo',
+  user: 'ink',
   password: '73841959',
-  database: 'csgo'
+  database: 'resource'
 });
  
 //connect to database
@@ -34,7 +34,7 @@ app.get('/api/user/:id',(req, res) => {
       });
     });
  app.get('/api/product',(req, res) => {
-      let sql = "SELECT * FROM products";
+      let sql = "SELECT * FROM products WHERE status = 0";
       let query = conn.query(sql, (err, results) => {
         if(err) throw err;
         res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
@@ -48,12 +48,50 @@ console.log(sql)
     res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
   });
 });
+app.get('/order/:id',(req,res)=>{
+    let sql="SELECT * FROM orders WHERE id ="+ req.params.id
+    console.log(sql)
+  let query = conn.query(sql, (err, results) => {
+    if(err) throw err;
+    res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+  });
+})
+app.get('/myorder/:id',(req,res)=>{
+    let sql = "SELECT * FROM orders WHERE touser=\""+req.params.id+"\" ORDER BY time DESC" ;
+console.log(sql)
+  let query = conn.query(sql, (err, results) => {
+    if(err) throw err;
+    res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+  });
+})
+
+app.get('/mysell/:id',(req,res)=>{
+    let sql = "SELECT * FROM orders WHERE fromuser=\""+req.params.id+"\" ORDER BY time DESC" ;
+console.log(sql)
+  let query = conn.query(sql, (err, results) => {
+    if(err) throw err;
+    res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+  });
+})
+app.delete('/order',function(req,res){
+    var id = req.body.id;
+    var sql = 'DELETE FROM orders WHERE id=?'
+    conn.query(sql, [id], function (err, result) {
+        if (err) {
+            console.log(err)
+            console.log('删除数据失败');
+        }
+        res.send('删除数据成功') //   响应内容 增加数据成功
+    });
+})
 app.post('/neworder',function(req,res){
-    var id = req.body.id;//即productid
-    var userto = req.body.userto;
-    var userfrom = req.body.userfrom;
-    var sql = 'insert into orders set id=? ,userto=?, userfrom=?,state=0 '
-    conn.query(sql, [id,userto,userfrom], function (err, result) {
+    var userto = req.body.touser;
+    var userfrom = req.body.fromuser;
+    var time = req.body.time;
+    var pid = req.body.productid;
+    var pname = req.body.productname
+    var sql = 'insert into orders set touser=?, fromuser=?,productid=?,productname=?,time=?,status=?'
+    conn.query(sql, [userto,userfrom,pid,pname,time,0], function (err, result) {
         if (err) {
             console.log(err)
             console.log('新增数据失败');
@@ -70,8 +108,9 @@ app.post('/add',function(req,res){
     var imageurl = req.body.image;
     var stime = req.body.dateFrom;
     var etime = req.body.dateTo;
-    var sql = 'insert into products set id=? ,name=?, productname=?, productimg=?, price=?, per=?, starttime=?, endtime=?'
-    conn.query(sql, [id,name,productname,imageurl,price,per,stime,etime], function (err, result) {
+    var detail = req.body.detail
+    var sql = 'insert into products set id=? ,name=?, productname=?, detail=?,productimg=?, price=?, per=?, starttime=?, endtime=?,status=?'
+    conn.query(sql, [id,name,productname,detail,imageurl,price,per,stime,etime,0], function (err, result) {
         if (err) {
             console.log(err)
             console.log('新增数据失败');
@@ -95,6 +134,41 @@ app.put('/change',function(req,res){
             console.log('修改数据失败');
         }
         res.send('修改数据成功') //   响应内容 增加数据成功
+    });
+});
+app.delete('/deletep/:id',function(req,res){
+    var id = req.params.id
+    var sql = 'DELETE FROM products WHERE id=?'
+    conn.query(sql, [id], function (err, result) {
+        if (err) {
+            console.log(err)
+            console.log('删除数据失败');
+        }
+        res.send('删除数据成功') //   响应内容 增加数据成功
+    });
+})
+app.put('/productstatus',function(req,res){
+    var id = req.body.id;
+    var status = req.body.status
+    var sql = `update products set status=${status} WHERE id= ${id}`
+    conn.query(sql,function (err, result) {
+        if (err) {
+            console.log(err)
+            console.log('修改数据失败');
+        }
+        res.send('修改数据成功')
+    });
+})
+app.put('/orderstatus',function(req,res){
+    var id = req.body.id;
+    var status = req.body.status;
+    var sql = `update orders set status=${status} WHERE id= ${id}`
+    conn.query(sql,function (err, result) {
+        if (err) {
+            console.log(err)
+            console.log('修改数据失败');
+        }
+        res.send('修改数据成功')
     });
 });
 //Server listening
