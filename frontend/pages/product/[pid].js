@@ -14,7 +14,8 @@ function formatDate(momentDate) {
 //如果是个人的产品显示修改界面,否则显示订购界面
 const fetcher = url => fetch(url).then(res => res.json());
 function ttime (){
-  return new Date()
+  let mtime=new Date()
+  return formatDate(mtime)
 }
 export default function Product (props) {
   //change back please
