@@ -35,7 +35,7 @@ export default function Product (props) {
             productid:product.id,
             productname:product.productname,
             fromuser: product.name,
-            time:ttime()
+            time:formatDate(ttime())
           })
         })
         await fetch('https://api.hezh.fail/productstatus',{
