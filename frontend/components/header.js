@@ -57,18 +57,14 @@ export default function Header () {
         window.location.href =`/search/`+values.name
       }}
       render={props=>
-        <form onSubmit={props.handleSubmit}>
+        <form className={styles.form}onSubmit={props.handleSubmit}>
           <label className="slabel"><input placeholder="Search product..." className="searchbox" type="text" id="name" name="name" value={props.values.name}
                                         onChange={props.handleChange} onBlur={props.handleBlur}/>
 {props.touched.name && props.errors.name && <div>{props.errors.name}</div>}</label>
               <button className="scbtn" type="submit">search!</button>
           </form>
       }/>
-            {session.user.image && 
-            
-            <span style={{backgroundImage: `url(${session.user.image})` }} className={styles.avatar}/>}
             <span className={styles.signedInText}>
-              <small>Signed in as</small><br/>
               <strong>{session.user.email || session.user.name}</strong>
               </span>
             <Button auto size="small"
