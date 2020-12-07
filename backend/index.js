@@ -171,6 +171,14 @@ app.put('/orderstatus',function(req,res){
         res.send('修改数据成功')
     });
 });
+app.get('/search/:id',function(req,res){
+    var id = req.params.id
+    var sql = `SELECT * FROM products WHERE productname LIKE '%${id}%' and status = 0;`
+    let query = conn.query(sql, (err, results) => {
+            if(err) throw err;
+            res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+          });
+})
 //Server listening
 app.listen(process.env.PORT || 3001,() =>{
   console.log('Server started on port 3001...');
