@@ -141,3 +141,21 @@ iframe {
     color: #000;
     margin: 10px;
 }
+.scbtn{
+  overflow: hidden;
+  width: 70px;
+  position: relative;
+  background: #FFF;
+  border: 2px solid #000;
+  border-radius: 4px;
+  padding: 5px 7px;
+  color: #000;
+  margin: 7px;
+}
+.searchbox{
+  background: #fff;
+  border-color: #aaaebc;
+  border-radius: 6px;
+  padding: 6px;
+  border: 2px solid #f3f3f3;
+}

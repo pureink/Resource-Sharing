@@ -29,13 +29,10 @@ export default function Page ({products}) {
       }}
       render={props=>
         <form onSubmit={props.handleSubmit}>
-          <p>search</p>
-          <label className="label"></label><input className="searchbox" type="text" id="name" name="name" value={props.values.name}
+          <label className="slabel"><input placeholder="Search product..." className="searchbox" type="text" id="name" name="name" value={props.values.name}
                                         onChange={props.handleChange} onBlur={props.handleBlur}/>
-{props.touched.name && props.errors.name && <div>{props.errors.name}</div>}
-<div className="submit-area">
-              <button className="smbtn" type="submit">submit!</button>
-            </div>
+{props.touched.name && props.errors.name && <div>{props.errors.name}</div>}</label>
+              <button className="scbtn" type="submit">search!</button>
           </form>
       }/>
   <div className="products">{items}</div>
