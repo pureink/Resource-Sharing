@@ -29,7 +29,7 @@ export default function Page ({products}) {
 export async function getServerSideProps() {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
-  const res = await fetch('https://api.hezh.fail/api/product/1')
+  const res = await fetch('https://api.hezh.fail/api/products/1')
   const json = await res.json()
   const products=json.response
   // By returning { props: posts }, the Blog component

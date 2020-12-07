@@ -40,7 +40,7 @@ export async function getServerSideProps(context) {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
   const path = context.params.paid
-  const res = await fetch("https://api.hezh.fail/api/product/"+path)
+  const res = await fetch("https://api.hezh.fail/api/products/"+path)
   const json = await res.json()
   const products=json.response
   // By returning { props: posts }, the Blog component

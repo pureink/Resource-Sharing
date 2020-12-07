@@ -33,14 +33,14 @@ app.get('/api/user/:id',(req, res) => {
         res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
       });
     });
- app.get('/api/product',(req, res) => {
+ app.get('/api/products',(req, res) => {
       let sql = "SELECT * FROM products WHERE status = 0";
       let query = conn.query(sql, (err, results) => {
         if(err) throw err;
         res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
       });
     });
-app.get('/api/product/:pagenum',(req, res) => {
+app.get('/api/products/:pagenum',(req, res) => {
       let sql = "SELECT * FROM products WHERE status = 0 LIMIT "+(parseInt(req.params.pagenum)-1)*12+" , "+12;
       let query = conn.query(sql, (err, results) => {
         if(err) throw err;
