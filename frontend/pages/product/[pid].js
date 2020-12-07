@@ -76,7 +76,7 @@ export default function Product (props) {
   const username = product.name
   console.log(product)
   // If no session exists, display access denied message
-  //if (!session) { return  <Layout><AccessDenied/></Layout> }
+  if (!session) { return  <Layout><AccessDenied/></Layout> }
   if(session.user.name!=username){
     return (
       <Layout>
