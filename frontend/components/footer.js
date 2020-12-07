@@ -1,7 +1,7 @@
 export default function Footer(){
     return(
         <footer>
-        <p>???</p>
+        <p>© 2020 RS. All rights reserved</p>
         </footer>
     )
 }

@@ -10,6 +10,9 @@ body {
   font-family: "PTMono",-apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   text-align: center;
 }
+main{
+  min-height: 80vh;
+}
 label{
   text-align: left;
   font-size:16px;
@@ -158,4 +161,10 @@ iframe {
   border-radius: 6px;
   padding: 6px;
   border: 2px solid #f3f3f3;
+}
+footer{
+position: relative;
+margin-top: 30px;
+border-top: 2px solid black;
+width: 100%;
 }
