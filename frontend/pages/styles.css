@@ -11,7 +11,7 @@ body {
   text-align: center;
 }
 main{
-  min-height: 80vh;
+  min-height: 40vh;
 }
 label{
   text-align: left;
@@ -163,6 +163,7 @@ iframe {
   border: 2px solid #f3f3f3;
 }
 footer{
+padding-top: 20px;
 position: relative;
 margin-top: 30px;
 border-top: 2px solid black;
