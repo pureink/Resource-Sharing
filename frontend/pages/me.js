@@ -7,6 +7,15 @@ function formatDate(momentDate) {
   return moment(momentDate).format("MM/DD/YYYY hh:mm:ss");
 }
 export default function Page ({products,session}) {
+  if (products.length==0) {
+    return (
+      <Layout>
+          <Text p>
+            还没有发布过商品呢
+          </Text>
+      </Layout>
+    )
+  }
   const items=[]
   for (var i=0;i<products.length;i++){
     items.push(

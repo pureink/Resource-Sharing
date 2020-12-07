@@ -8,14 +8,40 @@ function formatDate(momentDate) {
   }
 
 export default function Page ({orders}) {
+  if (orders.length==0) {
+    return (
+      <Layout>
+          <Text p>
+            还没有出售信息
+          </Text>
+      </Layout>
+    )
+  }
+  async function deleteRow(i, e) {
+    e.preventDefault();
+    if(typeof window !== "undefined"){
+      if(window.confirm('真的要删除么？')){
+        await fetch('https://api.hezh.fail/order/' + orders[i].id, {
+          method: 'DELETE',
+        })
+        .then(res => res.text()) // or res.json()
+        .then(res => console.log(res))
+        alert("成功")
+      }
+    else{
+      alert("那没事了")
+    }
+  }
+  }
   const items=[]
   for (var i=0;i<orders.length;i++){
     let data={}
     data['订单编号']=<Link href={"/order/"+orders[i].id} underline block>{orders[i].id}</Link>
     data['物品名称']=<Link href={"/product/"+orders[i].productid} underline block>{orders[i].productname}</Link>
-    data['订购日期']=orders[i].time
-    data['供货商']='从'+orders[i].fromuser+'手中购买'
-    data['状态']=orders[i].status
+    data['订购日期']=formatDate(orders[i].time)
+    data['购买者']='由'+orders[i].touser+'购买'
+    data['状态']=orderInfo(orders[i].status)
+    data['操作']=<Button onClick={deleteRow.bind(this, i)}>删除订单</Button>
     items.push(
       data
     )
@@ -28,6 +54,7 @@ export default function Page ({orders}) {
           <Table.Column prop="订购日期" label="订购日期" />
           <Table.Column prop="供货商" label="供货商" />
           <Table.Column prop="状态" label="状态" />
+          <Table.Column prop="操作" label="操作" />
         </Table>
     </Layout>
   )
