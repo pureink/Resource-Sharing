@@ -1,6 +1,5 @@
 import Layout from '../components/layout'
 import * as moment from 'moment';
-import { Formik} from 'formik';
 function formatDate(momentDate) {        
   return moment(momentDate).format("MM/DD/YYYY hh:mm:ss");
 }
@@ -21,20 +20,6 @@ export default function Page ({products}) {
   }
   return (
     <Layout>
-      <Formik initialValues={{
-        name: ""
-      }}
-      onSubmit={(values) => {
-        window.location.href =`/search/`+values.name
-      }}
-      render={props=>
-        <form onSubmit={props.handleSubmit}>
-          <label className="slabel"><input placeholder="Search product..." className="searchbox" type="text" id="name" name="name" value={props.values.name}
-                                        onChange={props.handleChange} onBlur={props.handleBlur}/>
-{props.touched.name && props.errors.name && <div>{props.errors.name}</div>}</label>
-              <button className="scbtn" type="submit">search!</button>
-          </form>
-      }/>
   <div className="products">{items}</div>
     </Layout>
   )

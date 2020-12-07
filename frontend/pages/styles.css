@@ -35,7 +35,9 @@ a {
   color:rgb(52, 109, 241);
 }
 
-
+header{
+  overflow: hidden;
+}
 hr {
   border: 1px solid #ddd;
 }
@@ -145,6 +147,7 @@ iframe {
     margin: 10px;
 }
 .scbtn{
+  z-index: -1;
   overflow: hidden;
   width: 70px;
   position: relative;

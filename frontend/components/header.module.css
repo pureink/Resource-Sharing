@@ -1,20 +1,34 @@
 /* Set min-height to avoid page reflow while session loading */
 .signedInStatus {
-  display: block;
+  position:fixed;
+  right: 0px;
   min-height: 4rem;
   width: 100%;
+  top: 0px;
 }
-
+.button{
+  position:fixed;
+  right: 5px;
+}
+.h1{
+  margin-top: 60px;
+}
+.form{
+  display: inline-block;
+  position: fixed;
+  left: 5px;
+}
 .loading,
 .loaded {
+  border-bottom: 1px solid #000;
+  text-align: right;
   position: relative;
   top: 0;
   opacity: 1;
   overflow: hidden;
-  border-radius: 0 0 .6rem .6rem;
   padding: .6rem 1rem;
   margin: 0;
-  background-color: rgba(0,0,0,.05);
+  background-color:#fff;
   transition: all 0.2s ease-in;
 }
 
@@ -25,16 +39,7 @@
 
 .signedInText,
 .notSignedInText {
-  position: absolute;
-  padding-top: .8rem;
-  left: 1rem;
-  right: 6.5rem;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  display: inherit;  
-  z-index: 1;
-  line-height: 1.3rem;
+  margin-right: 20px;
 }
 
 .signedInText {
@@ -52,33 +57,6 @@
   background-repeat: no-repeat;
 }
 
-.button,
-.buttonPrimary {
-  float: right;
-  margin-right: -.4rem;
-  font-weight: 500;
-  border-radius: .3rem;
-  cursor: pointer;
-  font-size: 1rem;
-  line-height: 1.4rem;
-  padding: .7rem .8rem;
-  position: relative;
-  z-index: 10;
-  background-color: transparent;
-  color: #555;
-}
-
-.buttonPrimary {
-  background-color: #346df1;
-  border-color: #346df1;
-  color: #fff;
-  text-decoration: none;
-  padding: .7rem 1.4rem;
-}
-
-.buttonPrimary:hover {
-  box-shadow: inset 0 0 5rem rgba(0,0,0,0.2)
-}
 
 .navItems {
   margin-bottom: 2rem;

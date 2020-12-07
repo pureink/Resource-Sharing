@@ -1,5 +1,4 @@
 import Layout from "../../components/layout"
-import {Formik} from 'formik'
 import * as moment from 'moment';
 function formatDate(momentDate) {        
     return moment(momentDate).format("YYYY-MM-DD hh:mm:ss");
@@ -24,39 +23,12 @@ export default function Search(props){
   return(
     <Layout>
     <h1>您搜索的结果为空</h1>
-    <Formik initialValues={{
-        name: ""
-      }}
-      onSubmit={(values) => {
-        window.location.href =`/search/`+values.name
-      }}
-      render={props=>
-        <form onSubmit={props.handleSubmit}>
-          <label className="slabel"><input placeholder="Search product..." className="searchbox" type="text" id="name" name="name" value={props.values.name}
-                                        onChange={props.handleChange} onBlur={props.handleBlur}/>
-{props.touched.name && props.errors.name && <div>{props.errors.name}</div>}</label>
-              <button className="scbtn" type="submit">search!</button>
-          </form>
-      }/>
 </Layout>
   )
   else{
     return(
         <Layout>
-                  <Formik initialValues={{
-        name: ""
-      }}
-      onSubmit={(values) => {
-        window.location.href =`/search/`+values.name
-      }}
-      render={props=>
-        <form onSubmit={props.handleSubmit}>
-          <label className="slabel"><input placeholder="Search product..." className="searchbox" type="text" id="name" name="name" value={props.values.name}
-                                        onChange={props.handleChange} onBlur={props.handleBlur}/>
-{props.touched.name && props.errors.name && <div>{props.errors.name}</div>}</label>
-              <button className="scbtn" type="submit">search!</button>
-          </form>
-      }/>
+            
             <h1>以下是您的搜索结果</h1>
         <div className="products">{items}</div>
         </Layout>

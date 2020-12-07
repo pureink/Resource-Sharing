@@ -1,7 +1,8 @@
 import Nlink from './Link'
 import { signIn, signOut, useSession } from 'next-auth/client'
 import styles from './header.module.css'
-
+import {Formik} from 'formik'
+import {Button} from '@geist-ui/react'
 // The approach used in this component shows how to built a sign in and sign out
 // component that works on pages which support both client and server side
 // rendering, and avoids any flash incorrect content on initial page load.
@@ -16,16 +17,28 @@ export default function Header () {
   <li className={styles.navItem}><Nlink className="linka" href="/mysell"><a>我的出售</a></Nlink></li>
   </>
   return (
-    <header>
-      <noscript>
-        <style>{`.nojs-show { opacity: 1; top: 0; }`}</style>
-      </noscript>
-      <h1>Resoure - Sharing</h1>
-      <div className={styles.signedInStatus}>
+    <>
+    <div className={styles.signedInStatus}>
         <p className={`nojs-show ${(!session && loading) ? styles.loading : styles.loaded}`}>
           {!session && <>
+            <Formik initialValues={{
+        name: ""
+      }}
+      onSubmit={(values) => {
+        window.location.href =`/search/`+values.name
+      }}
+      render={props=>
+        <form className={styles.form}onSubmit={props.handleSubmit}>
+          <label className="slabel"><input placeholder="Search product..." className="searchbox" type="text" id="name" name="name" value={props.values.name}
+                                        onChange={props.handleChange} onBlur={props.handleBlur}/>
+{props.touched.name && props.errors.name && <div>{props.errors.name}</div>}</label>
+          </form>
+      }/>
             <span className={styles.notSignedInText}>请先完成登录</span>
-            <a
+            <Button
+            auto
+            size="small"
+            type="success"
                 href={`/api/auth/signin`}
                 className={styles.buttonPrimary}
                 onClick={(e) => {
@@ -34,15 +47,32 @@ export default function Header () {
                 }}
               >
                 登录
-              </a>
+              </Button>
           </>}
-          {session && <>
-            {session.user.image && <span style={{backgroundImage: `url(${session.user.image})` }} className={styles.avatar}/>}
+          {session && <>   
+          <Formik initialValues={{
+        name: ""
+      }}
+      onSubmit={(values) => {
+        window.location.href =`/search/`+values.name
+      }}
+      render={props=>
+        <form onSubmit={props.handleSubmit}>
+          <label className="slabel"><input placeholder="Search product..." className="searchbox" type="text" id="name" name="name" value={props.values.name}
+                                        onChange={props.handleChange} onBlur={props.handleBlur}/>
+{props.touched.name && props.errors.name && <div>{props.errors.name}</div>}</label>
+              <button className="scbtn" type="submit">search!</button>
+          </form>
+      }/>
+            {session.user.image && 
+            
+            <span style={{backgroundImage: `url(${session.user.image})` }} className={styles.avatar}/>}
             <span className={styles.signedInText}>
               <small>Signed in as</small><br/>
               <strong>{session.user.email || session.user.name}</strong>
               </span>
-            <a
+            <Button auto size="small"
+            type="success"
                 href={`/api/auth/signout`}
                 className={styles.button}
                 onClick={(e) => {
@@ -51,10 +81,15 @@ export default function Header () {
                 }}
               >
                 登出
-              </a>
+              </Button>
           </>}
         </p>
       </div>
+    <header>
+      <noscript>
+        <style>{`.nojs-show { opacity: 1; top: 0; }`}</style>
+      </noscript>
+      <h1 className={styles.h1}>Resoure - Sharing</h1>
       <nav>
         <ul className={styles.navItems}>
           <li className={styles.navItem}><Nlink href="/"><a className="linka">所有商品</a></Nlink></li>
@@ -70,6 +105,6 @@ export default function Header () {
   `}
   </style>
     </header>
-    
+    </>
   )
 }
