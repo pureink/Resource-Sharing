@@ -72,7 +72,7 @@ export default function Product (props) {
     }
   
   }
-  const session = await getSession(context)
+  const session = props.session
   const data=props.data
   const product = data.response[0]
   const username = product.name
