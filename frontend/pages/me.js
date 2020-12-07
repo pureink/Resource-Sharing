@@ -2,6 +2,7 @@ import Layout from '../components/layout'
 import * as moment from 'moment';
 import { getSession } from 'next-auth/client'
 import Datetime from 'react-datetime'
+import { Text } from '@geist-ui/react'
 import AccessDenied from '../components/access-denied'
 function formatDate(momentDate) {        
   return moment(momentDate).format("MM/DD/YYYY hh:mm:ss");
