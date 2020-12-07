@@ -1,12 +1,21 @@
-import Layout from '../components/layout'
-import {Pagination, Link} from '@geist-ui/react'
+import Layout from '../../components/layout'
 import * as moment from 'moment';
+import { Formik} from 'formik';
+import {Pagination} from '@geist-ui/react'
+import { useRouter } from 'next/router'
+
 function formatDate(momentDate) {        
   return moment(momentDate).format("MM/DD/YYYY hh:mm:ss");
 }
+
 export default function Page ({products}) {
+  const router = useRouter()
+  function change(pageNumber) {
+    router.push('/pages/'+pageNumber)
+  }
+  
   const items=[]
-  for (var i=0;i<products.length&&i<4;i++){
+  for (var i=0;i<products.length;i++){
     items.push(
       <div key ={i} className="product">
         <img className="productimg" src={products[i].productimg}></img>
@@ -21,15 +30,17 @@ export default function Page ({products}) {
   }
   return (
     <Layout>
+    
   <div className="products">{items}</div>
-  <Link href={"/pages/1"} underline block>查看更多</Link>
+  <Pagination count={20} onChange={change}/>
     </Layout>
   )
 }
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
-  const res = await fetch('https://api.hezh.fail/api/product/1')
+  const path = context.params.paid
+  const res = await fetch("https://api.hezh.fail/api/product/"+path)
   const json = await res.json()
   const products=json.response
   // By returning { props: posts }, the Blog component

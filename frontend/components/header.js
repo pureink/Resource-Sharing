@@ -87,7 +87,7 @@ export default function Header () {
       <h1 className={styles.h1}>Resoure - Sharing</h1>
       <nav>
         <ul className={styles.navItems}>
-          <li className={styles.navItem}><Nlink href="/"><a className="linka">所有商品</a></Nlink></li>
+          <li className={styles.navItem}><Nlink href="/pages/1"><a className="linka">所有商品</a></Nlink></li>
           {mepage}
           <li className={styles.navItem}><Nlink href="/form"><a className="linka">创建商品</a></Nlink></li>
           <li className={styles.navItem}><Nlink href="/about"><a className="linka">关于</a></Nlink></li>
@@ -96,6 +96,11 @@ export default function Header () {
       <style global jsx>{`
   .selected{
     text-decoration: none;
+    background-color: #81bbff;
+    border-radius:5px;
+    padding:5px 10px;
+    color:#fff;
+    font-family:PTMono;
 }
   `}
   </style>
