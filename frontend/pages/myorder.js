@@ -13,9 +13,9 @@ export default function Page ({orders}) {
     let data={}
     data['订单编号']=<Link href={"/order/"+orders[i].id} underline block>{orders[i].id}</Link>
     data['物品名称']=<Link href={"/product/"+orders[i].productid} underline block>{orders[i].productname}</Link>
-    data['订购日期']=orders[i].time
+    data['订购日期']=formatData(orders[i].time)
     data['供货商']='从'+orders[i].fromuser+'手中购买'
-    data['状态']=orders[i].status
+    data['状态']=orderInfo(orders[i].status)
     items.push(
       data
     )
