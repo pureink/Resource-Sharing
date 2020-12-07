@@ -19,7 +19,7 @@ export default function Header () {
   return (
     <>
     <div className={styles.signedInStatus}>
-        <p className={`nojs-show ${(!session && loading) ? styles.loading : styles.loaded}`}>
+        <div className={`nojs-show ${(!session && loading) ? styles.loading : styles.loaded}`}>
           {!session && <>
             <Formik initialValues={{
         name: ""
@@ -61,7 +61,6 @@ export default function Header () {
           <label className="slabel"><input placeholder="Search product..." className="searchbox" type="text" id="name" name="name" value={props.values.name}
                                         onChange={props.handleChange} onBlur={props.handleBlur}/>
 {props.touched.name && props.errors.name && <div>{props.errors.name}</div>}</label>
-              <button className="scbtn" type="submit">search!</button>
           </form>
       }/>
             <span className={styles.signedInText}>
@@ -79,7 +78,7 @@ export default function Header () {
                 登出
               </Button>
           </>}
-        </p>
+        </div>
       </div>
     <header>
       <noscript>

@@ -1,4 +1,5 @@
 import Layout from '../components/layout'
+import {Pagination} from '@geist-ui/react'
 import * as moment from 'moment';
 function formatDate(momentDate) {        
   return moment(momentDate).format("MM/DD/YYYY hh:mm:ss");
@@ -21,6 +22,7 @@ export default function Page ({products}) {
   return (
     <Layout>
   <div className="products">{items}</div>
+  <Pagination count={20} initialPage={3}>{Pagination.props}</Pagination>
     </Layout>
   )
 }
