@@ -8,14 +8,16 @@ import * as Yup from 'yup';
 import * as moment from 'moment';
 import Datetime from 'react-datetime'
 import {genid} from '../../utils/genid'
+import {useModal} from '@geist-ui/react'
+import {Button} from '@geist-ui/react'
+import {Modal} from '@geist-ui/react'
 function formatDate(momentDate) {        
   return moment(momentDate).format("YYYY-MM-DD hh:mm:ss");
 }
 //如果是个人的产品显示修改界面,否则显示订购界面
 const fetcher = url => fetch(url).then(res => res.json());
 function ttime (){
-  let mtime=new Date()
-  return formatDate(mtime)
+  return new Date()
 }
 export default function Product (props) {
   //change back please
@@ -70,14 +72,15 @@ export default function Product (props) {
     }
   
   }
-  const session=props.session
+  const session = await getSession(context)
   const data=props.data
   const product = data.response[0]
   const username = product.name
   console.log(product)
   // If no session exists, display access denied message
-  if (!session) { return  <Layout><AccessDenied/></Layout> }
+  //if (!session) { return  <Layout><AccessDenied/></Layout> }
   if(session.user.name!=username){
+    const { visible, setVisible, bindings } = useModal()
     return (
       <Layout>
       <div>
@@ -85,12 +88,21 @@ export default function Product (props) {
         <div className="buyproduct">
         <img src={product.productimg}></img>
         <a href={"/product/"+product.id}><h2>{product.productname}</h2></a>
-        <p>{product.detail}</p>
-    <p>{product.price}{product.per}</p>
-    <p>发布者:{product.name}</p>
-    <p className="time">{formatDate(product.starttime)}</p>
-    <p className="time">{formatDate(product.endtime)}</p>
-    <button className="postbtn" onClick={buy}>订购 </button>
+    <p>价格：{product.price}{product.per}</p>
+    <p>发布者：{product.name}</p>
+    <p>起始时间：{formatDate(product.starttime)}</p>
+    <p>结束时间：{formatDate(product.endtime)}</p>
+    <Button type="secondary" ghost auto onClick={() => setVisible(true)}>显示详情</Button>
+        <Modal {...bindings}>
+        <Modal.Title>商品详情</Modal.Title>
+        <Modal.Content>
+          <p>{product.detail}</p>
+          <img src={product.productimg}></img>
+        </Modal.Content>
+        <Modal.Action onClick={() => setVisible(false)}>确定</Modal.Action>
+        <Modal.Action onClick={() => setVisible(false)}>关闭</Modal.Action>
+      </Modal>
+      <Button type="secondary" ghost auto onClick={buy}>订购商品 </Button>
       </div>
       </div>
       </Layout>
@@ -143,7 +155,7 @@ export default function Product (props) {
           <div>
               <label className="label">productname： </label><input className="inputbox" type="text" id="productname" name="productname" value={props.values.productname}
                                         onChange={props.handleChange} onBlur={props.handleBlur}/>
-{props.touched.productname && props.errors.productname && <div>{props.errors.productname}</div>}
+{props.touched.productname && props.errors.productname && <div></div>}
             </div>
             <div>
               <label className="label">detail: </label><input className="inputbox" type="text" id="detail" name="detail" value={props.values.detail}
