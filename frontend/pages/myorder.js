@@ -2,7 +2,7 @@ import Layout from '../components/layout'
 import { getSession } from 'next-auth/client'
 import {orderInfo} from '../utils/orderInfo'
 import * as moment from 'moment';
-import { Table,Link } from '@geist-ui/react'
+import { Table,Link,Text } from '@geist-ui/react'
 function formatDate(momentDate) {        
     return moment(momentDate).format("MM/DD/YYYY hh:mm:ss");
   }
