@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Nlink from './Link'
 import { signIn, signOut, useSession } from 'next-auth/client'
 import styles from './header.module.css'
 
@@ -11,9 +11,9 @@ export default function Header () {
   //存在用户时才显示个人界面的nav
   let mepage = null;
   if(session) mepage=<>
-  <li className={styles.navItem}><Link href="/me"><a>我的商品</a></Link></li>
-  <li className={styles.navItem}><Link href="/myorder"><a>我的购买</a></Link></li>
-  <li className={styles.navItem}><Link href="/mysell"><a>我的出售</a></Link></li>
+  <li className={styles.navItem}><Nlink className="linka" href="/me"><a>我的商品</a></Nlink></li>
+  <li className={styles.navItem}><Nlink className="linka" href="/myorder"><a>我的购买</a></Nlink></li>
+  <li className={styles.navItem}><Nlink className="linka" href="/mysell"><a>我的出售</a></Nlink></li>
   </>
   return (
     <header>
@@ -57,12 +57,19 @@ export default function Header () {
       </div>
       <nav>
         <ul className={styles.navItems}>
-          <li className={styles.navItem}><Link href="/"><a>所有商品</a></Link></li>
+          <li className={styles.navItem}><Nlink href="/"><a className="linka">所有商品</a></Nlink></li>
           {mepage}
-          <li className={styles.navItem}><Link href="/form"><a>创建商品</a></Link></li>
-          <li className={styles.navItem}><Link href="/about"><a>关于</a></Link></li>
+          <li className={styles.navItem}><Nlink href="/form"><a className="linka">创建商品</a></Nlink></li>
+          <li className={styles.navItem}><Nlink href="/about"><a className="linka">关于</a></Nlink></li>
         </ul>
       </nav>
+      <style global jsx>{`
+  .selected{
+    text-decoration: none;
+}
+  `}
+  </style>
     </header>
+    
   )
 }
