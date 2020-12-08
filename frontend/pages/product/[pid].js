@@ -127,9 +127,9 @@ export default function Product (props) {
       price: Yup.number().moreThan(0, "price must be greater than 0"),
       productname: Yup.string().trim().required("Name can not be empty")
     })}
-    onSubmit={(values) => {
+    onSubmit={async (values) => {
         console.log(values)
-        const res =fetch('https://api.hezh.fail/change', {
+        const res =await fetch('https://api.hezh.fail/change', {
         method: 'put',
         headers: {
           'Content-Type': 'application/json'
@@ -147,6 +147,7 @@ export default function Product (props) {
         })
       })
       alert("修改成功")
+      window.location.reload();
       }}
     render={props =>
         <form onSubmit={props.handleSubmit}>

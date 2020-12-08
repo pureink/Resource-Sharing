@@ -27,6 +27,7 @@ export default function Page ({orders}) {
         .then(res => res.text()) // or res.json()
         .then(res => console.log(res))
         alert("成功")
+        window.location.reload(); 
       }
     else{
       alert("那没事了")
