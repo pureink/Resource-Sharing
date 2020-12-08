@@ -2,24 +2,39 @@ import Nlink from './Link'
 import { signIn, signOut, useSession } from 'next-auth/client'
 import styles from './header.module.css'
 import {Formik} from 'formik'
-import {Button,Collapse} from '@geist-ui/react'
+import {Button,Select} from '@geist-ui/react'
 // The approach used in this component shows how to built a sign in and sign out
 // component that works on pages which support both client and server side
 // rendering, and avoids any flash incorrect content on initial page load.
 export default function Header () {
   const [ session, loading ] = useSession()
-
+  const handler = val => {
+    window.location.href =val
+  }
   //存在用户时才显示个人界面的nav
   let mepage = null;
+  let menu = null;
   if(session) mepage=<>
   <li className={styles.navItem}><Nlink className="linka" href="/me"><a>我的商品</a></Nlink></li>
   <li className={styles.navItem}><Nlink className="linka" href="/myorder"><a>我的购买</a></Nlink></li>
   <li className={styles.navItem}><Nlink className="linka" href="/mysell"><a>我的出售</a></Nlink></li>
   </>
+  if(session) memu=<>
+    <Select.Option value="/me">我的商品</Select.Option>
+    <Select.Option value="/myorder">我的购买</Select.Option>
+    <Select.Option value="/mysell">我的出售</Select.Option>
+  </>
 
   let top=<>
   <div className={styles.signedInStatus}>
     <div className={`nojs-show ${(!session && loading) ? styles.loading : styles.loaded}`}>
+      <Select id={styles.select} placeholder="菜单" onChange={handler}>
+        <Select.Option value="/">首页</Select.Option>
+        <Select.Option value="/pages/1">所有商品</Select.Option>
+        {menu}
+        <Select.Option value="/form">创建商品</Select.Option>
+        <Select.Option value="/about">关于</Select.Option>
+      </Select>
       <Formik initialValues={{
                 name: ""
               }}
