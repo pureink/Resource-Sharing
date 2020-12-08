@@ -14,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "@geist-ui/react": "^2.1.0-canary.2",
+    "antd": "^4.9.2",
     "formik": "^2.2.2",
     "moment": "^2.29.1",
     "next": "^9.5.0",

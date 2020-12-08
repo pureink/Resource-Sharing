@@ -51,6 +51,7 @@ function formatDate(momentDate) {
         })
       })
       alert("创建成功")
+      window.location.href ='/me'
       }}
     render={props =>
         <form onSubmit={props.handleSubmit}>
@@ -116,6 +117,11 @@ function formatDate(momentDate) {
 
  export async function getServerSideProps(context) {
     const session = await getSession(context)
+    // const session = {
+    //   user: {
+    //     name:'123'
+    //   }
+    // }
     return {
       props: {
         session

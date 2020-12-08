@@ -41,6 +41,11 @@ export async function getServerSideProps(context) {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
   const session = await getSession(context)
+  // const session = {
+  //   user: {
+  //     name:'123'
+  //   }
+  // }
   const res = await fetch('https://api.hezh.fail/api/user/'+session.user.name)
   const json = await res.json()
   const products=json.response
