@@ -19,7 +19,7 @@ export default function Header () {
   <li className={styles.navItem}><Nlink className="linka" href="/myorder"><a>我的购买</a></Nlink></li>
   <li className={styles.navItem}><Nlink className="linka" href="/mysell"><a>我的出售</a></Nlink></li>
   </>
-  if(session) memu=<>
+  if(session) menu=<>
     <Select.Option value="/me">我的商品</Select.Option>
     <Select.Option value="/myorder">我的购买</Select.Option>
     <Select.Option value="/mysell">我的出售</Select.Option>
