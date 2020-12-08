@@ -13,7 +13,7 @@ export default function Page ({orders}) {
     return (
       <Layout>
           <Text p>
-            还没有进行过购买呢
+            还没有卖出过商品呢
           </Text>
       </Layout>
     )

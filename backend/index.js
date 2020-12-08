@@ -81,7 +81,7 @@ console.log(sql)
   });
 })
 app.delete('/order/:id',function(req,res){
-    var id = req.body.id;
+    var id = req.params.id;
     var sql = 'DELETE FROM orders WHERE id=?'
     conn.query(sql, [id], function (err, result) {
         if (err) {

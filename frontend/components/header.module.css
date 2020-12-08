@@ -15,8 +15,8 @@
 }
 .form{
   display: inline-block;
-  position: fixed;
-  left: 5px;
+  position: relative;
+  margin-right: 12px;
 }
 .loading,
 .loaded {
@@ -39,7 +39,7 @@
 
 .signedInText,
 .notSignedInText {
-  margin-right: 0px;
+  margin-right: 7px;
 }
 
 .signedInText {
@@ -68,4 +68,13 @@
 .navItem {
   display: inline-block;
   margin-right: 1rem;
+}
+
+#select {
+  display: inline-block;
+  position: fixed;
+  left: 5px;
+  width: 80px;
+  padding: 0 4pt 0 4pt;
+  min-width: 10px;
 }
