@@ -97,7 +97,7 @@ export default function Product (props) {
         <Modal.Title>商品详情</Modal.Title>
         <Modal.Content>
           <p>{product.detail}</p>
-          <img src={product.productimg}></img>
+          <img className="pimg" src={product.productimg}></img>
         </Modal.Content>
         <Modal.Action onClick={() => setVisible(false)}>确定</Modal.Action>
         <Modal.Action onClick={() => setVisible(false)}>关闭</Modal.Action>
