@@ -80,7 +80,7 @@ console.log(sql)
     res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
   });
 })
-app.delete('/order',function(req,res){
+app.delete('/order/:id',function(req,res){
     var id = req.body.id;
     var sql = 'DELETE FROM orders WHERE id=?'
     conn.query(sql, [id], function (err, result) {
