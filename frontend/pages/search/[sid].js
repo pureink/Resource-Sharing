@@ -37,7 +37,7 @@ export default function Search(props){
 export async function getServerSideProps(context) {
     const path = context.params.sid
     console.log(path)
-    const data = await fetcher("https://api.hezh.fail/search/"+path)
+    const data = await fetcher("https://api.hezh.fail/search/"+encodeURI(path))
     const products=data.response
     return {
       props: {
