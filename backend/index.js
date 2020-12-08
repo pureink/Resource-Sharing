@@ -180,6 +180,7 @@ app.put('/orderstatus',function(req,res){
 });
 app.get('/search/:id',function(req,res){
     var id = req.params.id
+    id = decodeURI(id)
     var sql = `SELECT * FROM products WHERE productname LIKE '%${id}%' and status = 0;`
     let query = conn.query(sql, (err, results) => {
             if(err) throw err;
