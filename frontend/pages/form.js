@@ -31,9 +31,9 @@ function formatDate(momentDate) {
       productname: Yup.string().trim().required("产品名称不可以留空哦"),
       per:Yup.string().trim().required("产品单位不可以留空哦")
     })}
-    onSubmit={(values) => {
+    onSubmit={async (values) => {
         console.log(values)
-        const res =fetch('https://api.hezh.fail/add', {
+        const res =await fetch('https://api.hezh.fail/add', {
         method: 'post',
         headers: {
           'Content-Type': 'application/json'
