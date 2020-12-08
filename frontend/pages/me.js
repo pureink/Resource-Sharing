@@ -1,9 +1,7 @@
 import Layout from '../components/layout'
 import * as moment from 'moment';
 import { getSession } from 'next-auth/client'
-import Datetime from 'react-datetime'
 import { Text } from '@geist-ui/react'
-import AccessDenied from '../components/access-denied'
 function formatDate(momentDate) {        
   return moment(momentDate).format("MM/DD/YYYY hh:mm:ss");
 }
@@ -41,11 +39,6 @@ export async function getServerSideProps(context) {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
   const session = await getSession(context)
-  // const session = {
-  //   user: {
-  //     name:'123'
-  //   }
-  // }
   const res = await fetch('https://api.hezh.fail/api/user/'+session.user.name)
   const json = await res.json()
   const products=json.response
